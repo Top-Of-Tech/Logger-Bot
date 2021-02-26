@@ -30,4 +30,4 @@ async def on_message(message):
                  message=str(message.content)
                  )
 
-bot.run("ODE0OTQwNzM1MDk0NTIxOTA2.YDlKtA.6qgDOY93oHP2cYulVSGzyuy1f_E")
+bot.run()
