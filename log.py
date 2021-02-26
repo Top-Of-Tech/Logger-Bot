@@ -50,11 +50,3 @@ def close_logger(log):
         except (OSError, ValueError): pass
         finally: handler.release()
         log.removeHandler(handler) 
- 
-if __name__ == "__main__":
-    # cant guarentee the comments below work, just found them in some github issue.
-    log_message(server='TheCodingJs', # message.guild 
-                 channel='general', # message.channel.mention
-                 username='Top of Tech', # message.author
-                 message='Is this working?11111' # message.content
-                 )
