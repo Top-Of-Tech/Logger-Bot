@@ -1,2 +1,2 @@
 # Logger-Bot
-Logger-Bot
+Educational purposes only
