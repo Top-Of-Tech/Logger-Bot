@@ -32,9 +32,6 @@ async def on_message(message):
                  )
     await bot.process_commands(message)
 
-<<<<<<< Updated upstream
-bot.run()
-=======
 @bot.event
 async def on_member_join(message):
     log.log_message(server=str(message.guild.name),
@@ -54,4 +51,3 @@ async def on_member_remove(message):
 
 
 bot.run()
->>>>>>> Stashed changes
