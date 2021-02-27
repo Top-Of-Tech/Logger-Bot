@@ -16,6 +16,7 @@ print("""
 
 @bot.event
 async def on_ready():
+    await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="all your secret messages"))
     print("Bot is logging and online")
 
 for filename in os.listdir("cogs"):
@@ -29,5 +30,28 @@ async def on_message(message):
                  username=str(message.author),
                  message=str(message.content)
                  )
+    await bot.process_commands(message)
+
+<<<<<<< Updated upstream
+bot.run()
+=======
+@bot.event
+async def on_member_join(message):
+    log.log_message(server=str(message.guild.name),
+                 channel=None,
+                 username=str(f'{message.name}#{message.discriminator}'),
+                 message=str(f'{message.name}#{message.discriminator} - Joined')
+                 )
+
+@bot.event
+async def on_member_remove(message):
+    log.log_message(server=str(message.guild.name),
+                 channel=None,
+                 username=str(f'{message.name}#{message.discriminator}'),
+                 message=str(f'{message.name}#{message.discriminator} - Left')
+                 )
+
+
 
 bot.run()
+>>>>>>> Stashed changes
