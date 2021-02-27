@@ -5,6 +5,7 @@ import log
 
 intents = discord.Intents().all()
 bot = commands.Bot("!", intents=intents)
+bot.remove_command("help")
 
 print("""
  _                                  ____        _
@@ -47,7 +48,5 @@ async def on_member_remove(message):
                  username=str(f'{message.name}#{message.discriminator}'),
                  message=str(f'{message.name}#{message.discriminator} - Left')
                  )
-
-
 
 bot.run()
