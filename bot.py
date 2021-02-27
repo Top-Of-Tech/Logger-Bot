@@ -3,7 +3,7 @@ from discord.ext import commands
 import os
 import log
 
-intents = discord.Intents.default()
+intents = discord.Intents().all()
 bot = commands.Bot("!", intents=intents)
 
 print("""
