@@ -34,14 +34,18 @@ def log_message(server: str, channel: str, username: str, message: str):
     s_log = message_logger(server)
     s_log.debug(f'{username}: {message}')
     close_logger(s_log) # If we don't close the loggers, then the loggers all log when ever we log anything.
-    u_log = message_logger(server, username)
+    u_log = message_logger(server + f'/Users', username)
     u_log.debug(message)
     close_logger(u_log)
-    c_log = message_logger(server, channel)
-    c_log.debug(f'{username}: {message}')
-    close_logger(c_log)
+    if channel is not None:
+        c_log = message_logger(server + f'/Channels', channel)
+        c_log.debug(f'{username}: {message}')
+        close_logger(c_log)
     if get_size(dir='Data/') >= 10: # if data file is over 10mb we archive the data folder.
         zip_logs()
+
+def log_rename(old_name, new_name):
+    os.rename(f'{SAVE_DIRECOTRY}/Users/{old_name}.log', f'{SAVE_DIRECOTRY}/Users/{new_name}.log')
 
 def close_logger(log):
     handlers = log.handlers.copy()
