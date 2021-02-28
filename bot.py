@@ -48,5 +48,32 @@ async def on_member_remove(message):
                  username=str(f'{message.name}#{message.discriminator}'),
                  message=str(f'{message.name}#{message.discriminator} - Left')
                  )
+@bot.event
+async def on_member_update(before, after):
+    try:
+        if before.display_name != after.display_name:
+            log.log_message(server=str(before.guild.name),
+                    channel=None,
+                    username=str(f'{before.display_name}#{before.discriminator}'),
+                    message=str(f'{before.display_name}#{before.discriminator} - Changed nickname to: {after.display_name}#{after.discriminator}'))
+            log.log_rename(new_name=f'{after.guild.name}/{after.display_name}#{after.discriminator}',
+                            old_name=f'{before.guild.name}/{before.display_name}#{before.discriminator}')
+        elif before.raw_status != after.raw_status:
+            log.log_message(server=str(before.guild.name),
+                    channel=None,
+                    username=str(f'{after.display_name}#{after.discriminator}'),
+                    message=str(f'{after.display_name}#{after.discriminator} - Changed status from: {before.raw_status} to: {after.raw_status}'))
+        elif before.activity.name != after.activity.name:
+            log.log_message(server=str(before.guild.name),
+                    channel=None,
+                    username=str(f'{after.display_name}#{after.discriminator}'),
+                    message=str(f'{after.display_name}#{after.discriminator} - Changed activaite from: {before.activity.name} to: {after.activity.name}'))
+        elif len(before.roles) != len(after.roles):
+            added_role = list(set(before.roles)^set(after.roles))
+            log.log_message(server=str(before.guild.name),
+                    channel=None,
+                    username=str(f'{after.display_name}#{after.discriminator}'),
+                    message=str(f'{after.display_name}#{after.discriminator} - Role added: {added_role.name}'))
+    except: pass
 
 bot.run()
