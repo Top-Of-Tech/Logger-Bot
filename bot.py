@@ -75,5 +75,6 @@ async def on_member_update(before, after):
                     username=str(f'{after.display_name}#{after.discriminator}'),
                     message=str(f'{after.display_name}#{after.discriminator} - Role added: {added_role.name}'))
     except: pass
-
-bot.run()
+with open('token.txt', 'r') as file:
+    token = file.read().replace('\n', '')
+    bot.run(token)
