@@ -8,11 +8,11 @@ bot = commands.Bot("!", intents=intents)
 bot.remove_command("help")
 
 print("""
- _                                  ____        _
-| |    ___   __ _  __ _  ___ _ __  | __ )  ___ | |_
-| |   / _ \ / _` |/ _` |/ _ \ '__| |  _ \ / _ \| __|
-| |__| (_) | (_| | (_| |  __/ |    | |_) | (_) | |_
-|_____\___/ \__, |\__, |\___|_|    |____/ \___/ \__|
+ _                                       ____        _
+| |    ___   __ _  __ _  ___ _ __       | __ )  ___ | |_
+| |   / _ \ / _` |/ _` |/ _ \ '__|      |  _ \ / _ \| __|
+| |__| (_) | (_| | (_| |  __/ |         | |_) | (_) | |_
+|_____\___/ \__, |\__, |\___|_|         |____/ \___/ \__|
             |___/ |___/""")
 
 @bot.event
@@ -21,8 +21,7 @@ async def on_ready():
     print("Bot is logging and online")
 
 for filename in os.listdir("cogs"):
-    if filename.endswith(".py"):
-        bot.load_extension(f"cogs.{filename[:-3]}")
+    if filename.endswith(".py"): bot.load_extension(f"cogs.{filename[:-3]}")
 
 @bot.event
 async def on_message(message):
@@ -67,7 +66,7 @@ async def on_member_update(before, after):
             log.log_message(server=str(before.guild.name),
                     channel=None,
                     username=str(f'{after.display_name}#{after.discriminator}'),
-                    message=str(f'{after.display_name}#{after.discriminator} - Changed activaite from: {before.activity.name} to: {after.activity.name}'))
+                    message=str(f'{after.display_name}#{after.discriminator} - Changed activity from: {before.activity.name} to: {after.activity.name}'))
         elif len(before.roles) != len(after.roles):
             added_role = list(set(before.roles)^set(after.roles))
             log.log_message(server=str(before.guild.name),
@@ -75,6 +74,4 @@ async def on_member_update(before, after):
                     username=str(f'{after.display_name}#{after.discriminator}'),
                     message=str(f'{after.display_name}#{after.discriminator} - Role added: {added_role.name}'))
     except: pass
-with open('token.txt', 'r') as file:
-    token = file.read().replace('\n', '')
-    bot.run(token)
+with open('token.txt', 'r') as file: bot.run(file.read().replace('\n', ''))
