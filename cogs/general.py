@@ -6,18 +6,24 @@ class General(commands.Cog):
     def __init__(self, client):
         self.client = client
 
+    # ---------------------------------------------------
+
+    # Regular help command
     @commands.command()
     async def help(self, ctx):
-        embed=discord.Embed(title="Help Command", color=0x1479d2)
+        embed = discord.Embed(title="Help Command", color=0x1479d2)
 
         embed.add_field(name="**General**", value="`General commands`", inline=True)
         embed.add_field(name="**Moderation**", value="`Moderation commands`", inline=True)
 
         await ctx.send(embed=embed)
 
+    # ---------------------------------------------------
+
+    # Moderation help command
     @commands.command(aliases=["md"])
     async def moderation(self, ctx):
-        embed=discord.Embed(title="**Moderation**", color=0x1479d2)
+        embed = discord.Embed(title="**Moderation**", color=0x1479d2)
         embed.add_field(name="`!ban`", value="Bans a user", inline=False)
         embed.add_field(name="`!kick`", value="Kicks a user", inline=False)
         embed.add_field(name="`!mute`", value="Mutes a user", inline=False)
@@ -25,15 +31,21 @@ class General(commands.Cog):
         embed.add_field(name="`!purge`", value="Deletes messages", inline=False)
         await ctx.send(embed=embed)
 
+    # ---------------------------------------------------
+
+    # General help command
     @commands.command(aliases=["gn"])
     async def general(self, ctx):
-        embed=discord.Embed(title="**General**", color=0x1479d2)
+        embed = discord.Embed(title="**General**", color=0x1479d2)
         embed.add_field(name="`!help`", value="Shows help command", inline=False)
         embed.add_field(name="`!moderation`", value="Shows moderation commands", inline=False)
         embed.add_field(name="`!general`", value="This command :)", inline=False)
         embed.add_field(name="`!ping`", value="Shows bot's latency", inline=False)
         await ctx.send(embed=embed)
 
+    # ---------------------------------------------------
+
+    # Gives bots latency/ping
     @commands.command()
     async def ping(self, ctx):
         latency = float(self.client.latency)
@@ -47,7 +59,7 @@ class General(commands.Cog):
             message = "ping is ok!"
         elif latency < 1000:
             message = "ping is horrible!"
-        embed=discord.Embed(title=f"Pong! The bot's {message}", color=0x1479d2)
+        embed = discord.Embed(title=f"Pong! The bot's {message}", color=0x1479d2)
         embed.set_footer(text=f"Ping is {round(latency, 4)} M/S")
         await ctx.send(embed=embed)
 
