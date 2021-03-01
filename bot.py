@@ -48,6 +48,7 @@ async def on_member_remove(message):
                  username=str(f'{message.name}#{message.discriminator}'),
                  message=str(f'{message.name}#{message.discriminator} - Left')
                  )
+
 @bot.event
 async def on_member_update(before, after):
     try:
